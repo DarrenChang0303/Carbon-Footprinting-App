@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+  <head>
+<!-- Author - Gavin Hodson-Walker  -->
+<!-- A home page design for the CSC8005 Team 15 Group Project  -->
+<!-- This html document was based on the linkedin learning lesson found at this url - 
+https://www.linkedin.com/learning/dreamweaver-cc-responsive-design-with-bootstrap-4/speed-up-responsive-design?autoplay=true  
+This lesson was followed to educate myself in the use of html/css/bootstrap 4/Adobe Dreamweaver, once complete the finalised
+webpage was heavily modified to suit this particular Carbon Footprinter application-->
+    <meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>SAGE Carbon Footprinter</title>
+    <!-- Bootstrap -->
+	<!-- <link href="css/bootstrap-4.0.0.css" rel="stylesheet"> -->
+	<link th:href="@{/dist/css/bootstrap-4.4.1.css}" rel="stylesheet" type="text/css">
+	<link th:href="@{/dist/css/carbonfghw.css}" rel="stylesheet" type="text/css">
+</head>
+  <body>
+  <nav class="navbar fixed-top navbar-expand-lg navbar-custom"> <a class="navbar-brand" href="index.html"><strong>SAGE</strong> Carbon Footprinter</a>
+      <button class="navbar-toggler custom-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent1" aria-controls="navbarSupportedContent1" aria-expanded="false" aria-label="Toggle navigation">Menu <span class="navbar-toggler-icon"></span> </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent1">
+        <ul class="navbar-nav mr-auto">
+              <li class="nav-item active"> <a class="nav-link" href="index.html">Home <span class="sr-only">(current)</span></a> </li>
+          <li class="nav-item"> <a class="nav-link" th:href="@{/user/list}">League Table</a> </li>
+          </ul>
+    </div>
+  </nav>
+  <div class="container-fluid">
+      <div class="row">
+          <div class="col-12" id="hero">
+              <h1>SAGE Carbon Footprinter</h1>
+              <img th:src="@{/dist/images/tioga_lake.jpg}" class="img-fluid" alt="Tioga Lake">
+          </div>
+      </div>
+      <section class="row justify-content-xl-around" id="highlights">
+          <div class="col-sm-6 col-md-4 col-xl-3">
+			<img th:src="@{/dist/images/svg/mountains_icon.svg}" alt="" width="250"/>
+				<h2>Add Action</h2>
+                <a th:href="@{/thing/queryTypes}" class="btn btn-success">Add Action</a>
+				<p>Click here to add and action you have undertaken.</p>
+          </div>
+          <div class="col-sm-6 col-md-4 col-xl-3">
+			<img th:src="@{/dist/images/svg/leaf_icon.svg}" alt=""/>
+				<h2>Historic Record</h2>
+                <a th:href="@{/action/query}" class="btn btn-success">History</a>
+				<p>Click here to view your history record.</p>
+		      <p></p>
+		  </div>
+          <div class="col-sm-6 col-md-4 col-xl-3">
+			<img th:src="@{/dist/images/svg/paw_icon.svg}" alt=""/>
+				<h2>Your Current Score</h2>
+                <p></p>
+                <p><h4 class="card-title" th:text="'Name: '+${user.name}">userName</h4></p>
+                <p></p>
+                <p><h4 class="card-text" th:text="'Points: '+${user.point}">userPoint</h4></p>
+          </div>          
+      </section>
+      
+      <section class="row justify-content-around" id="articles">
+          <article class="card col-md-4 col-xl-3"> <img class="card-img-top" th:src="@{/dist/images/laptop.png}" alt="laptop">
+              <div class="card-body">
+				  <h3>This Tool</h3>
+                  <p>SAGE, is a UK based international software company based in Newcastle upon Tyne. It currently has 13,000 members of staff across the world.</p><p>These staff are the focus of the tool. SAGE wants to promote environmentally responsible activities such as recycling, litter picking, carbon conscious business and/or commuting travel.</p>
+              </div>
+          </article>
+          <article class="card col-md-4 col-xl-3"> <img class="card-img-top" th:src="@{/dist/images/footprint.png}" alt="Footprint">
+              <div class="card-body">
+                  <h3>Your Carbon Footprint</h3>
+                  <p>A carbon footprint is historically defined as the total greenhouse gas (GHG) emissions caused by an individual, event, organization, or product, expressed as carbon dioxide equivalent. </p>
+                  <p>Greenhouse gases, including the carbon-containing gases carbon dioxide and methane, can be emitted through the burning of fossil fuels, land clearance and the production and consumption of food, manufactured goods, materials, wood, roads, buildings, transportation and other services.</p>
+                  <!-- text reference: https://en.wikipedia.org/wiki/Carbon_footprint -->
+              </div>
+          </article>
+          <article class="card col-md-4 col-xl-3"> <img class="card-img-top" th:src="@{/dist/images/sage.jpg}" alt="sage">
+              <div class="card-body">
+                  <h3>About Sage</h3>                  
+                  <p><strong>Sage is the market leader for integrated accounting, payroll, and payment systems, supporting the ambition of the world’s entrepreneurs.</p>
+				  <p>Like many of the businesses we serve, Sage began as a small business and has grown beyond what seemed imaginable. Today over 13,000 colleagues now support millions of entrepreneurs across 23 countries as they power the global economy.</strong></p>
+				  <p>We help drive today’s business builders with a new generation of solutions to manage everything from money to people.</p>
+                  <!-- text reference: https://www.sage.com/en-gb/about-us/ -->
+            </div>
+          </article>
+      </section>
+      	<footer class="row">
+          <div class="col-12">&nbsp;
+              <p>CSC8005 - Team 15 </p>
+          </div>
+		</footer>
+  </div>
+<!-- body code goes here -->
+
+
+	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) --> 
+	<script th:src="@{/dist/js/jquery-3.2.1.min.js}"></script>
+
+	<!-- Include all compiled plugins (below), or include individual files as needed -->
+	<script th:src="@{/dist/js/popper.min.js}"></script>
+    <!-- <script src="js/bootstrap-4.0.0.js"></script> -->
+  <script th:src="@{/dist/js/bootstrap-4.4.1.js}"></script>
+</body>
+</html>

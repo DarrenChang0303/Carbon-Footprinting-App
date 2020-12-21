@@ -1,0 +1,171 @@
+@charset "utf-8";
+body {
+    padding-top: 50px;
+}
+/* Background color for navbar and dropdown menus */
+.navbar-custom, .navbar-custom .dropdown-menu {
+    background-color: #002332;
+}
+
+/* Text color for navbar and dropdown menus */
+.navbar-custom .navbar-brand, .navbar-custom .navbar-text,
+.navbar-custom .navbar-nav .nav-link,
+.navbar-custom .dropdown-item {
+    color: #ecf0f1;
+}
+/* Background and text colors for current page link and links on hover and focus */
+.navbar-custom .nav-item.active .nav-link,
+.navbar-custom .nav-item:hover .nav-link,
+.navbar-custom .nav-item:focus .nav-link,
+.navbar-custom .dropdown-item:hover, 
+.navbar-custom .dropdown-item:focus {
+    background-color: #218838;
+    color: #fff;
+}
+/* Border and text colors for menu icon on small screens */
+.custom-toggler.navbar-toggler {
+    border-color: rgba(236,240,241,1.00);
+    color: #fff;
+}
+/* Hamburger icon - use same rgb values as previous rule for stroke */
+.custom-toggler .navbar-toggler-icon {
+  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(236,240,241, 0.7)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E");
+}
+.navbar-brand {
+    color: #00DC00;
+    padding-left: 10px;
+    background-position: 20px center;
+    background-size: 50px auto;
+}
+.btn {
+    background:  color: #00DC00;
+	margin-top: 20px;
+    margin-bottom: 20px;
+
+}
+
+#hero {
+    padding-left: 0px;
+    padding-right: 0px;
+    position: relative;
+}
+#hero h1 {
+    position: absolute;
+    color: #fff;
+    text-shadow: 2px 1px rgba(71,71,71,0.68);
+    font-size: 1.5rem;
+    bottom: 0%;
+    left: 3%;
+}
+#highlights {
+    text-align: center;
+    margin-top: 30px;
+    margin-bottom: 20px;
+}
+#highlights img[src$="icon.svg"] {
+    width: 50px;
+    margin: 10px auto;
+    display: block;
+}
+#highlights h2 {
+    color: #000000;
+}
+article h3 {
+    color: #000000;
+    font-size: 1.2rem;
+    text-align: center;
+    text-shadow: 0 0 0 rgba(255,255,255,0.73);
+}
+.card-img-overlay {
+    right: 6%;
+    top: -10px;
+}
+
+footer {
+    color: #fff;
+    font-size: 0.8rem;
+    text-align: center;
+    background-color: #002332;
+}
+
+
+
+
+
+
+
+@media screen and (min-width:440px){
+#hero h1 {
+    font-size: 1.8rem;
+}
+
+}
+
+
+@media screen and (min-width:576px){
+#hero h1 {
+    font-size: 2.5rem;
+    bottom: 3%;
+}
+
+}
+
+
+@media screen and (min-width:960px){
+#hero h1 {
+    font-size: 3rem;
+    bottom: 8%;
+    left: 6%;
+}
+
+}
+#feature {
+    background-color: #316F7F;
+    background-image: -webkit-linear-gradient(270deg,rgba(49,111,127,1.00) 0%,rgba(70,151,171,1.00) 100%);
+    background-image: -moz-linear-gradient(270deg,rgba(49,111,127,1.00) 0%,rgba(70,151,171,1.00) 100%);
+    background-image: -o-linear-gradient(270deg,rgba(49,111,127,1.00) 0%,rgba(70,151,171,1.00) 100%);
+    background-image: linear-gradient(180deg,rgba(49,111,127,1.00) 0%,rgba(70,151,171,1.00) 100%);
+    color: #fff;
+}
+
+#feature h2 {
+    text-align: center;
+}
+#feature p {
+    font-size: 1.2rem;
+}
+#articles {
+    padding: 20px 0;
+}
+
+.body {
+    background-repeat: no-repeat;
+    background-image: url("/dist/images/sagephoto.jpg");
+    background-size: cover;
+}
+
+.header {
+    color: #fff;
+    text-align: left;
+    background-color: #002332;
+    padding-left: 27px;
+	padding-top: 20px;
+	padding-bottom: 5px;
+}
+
+.footer {
+    color: #fff;
+    font-size: 0.8rem;
+    text-align: centre;
+    background-color: #002332;
+    padding-bottom: 15px;
+}
+
+.container-fluid bg{
+    position: absolute;
+    top: 15vh;
+    background-color: #fff;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px 0px #000;
+}

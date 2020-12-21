@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="login">
+    <label>Login</label>
+    <input id="userNameLogin" placeholder="User Name">
+    <input id="userPasswordLogin" placeholder="Password">
+    <a href="#" onclick="login()">submit</a>
+</div>
+<div id="insert" onsubmit="insert()">
+    <label>Insert</label>
+    <input id="userNameInsert" placeholder="User Name">
+    <input id="userPasswordInsert" placeholder="Password">
+    <a href="#" onclick="insert()">submit</a>
+</div>
+<div id="insertType">
+    <label>TypeInsert</label>
+    <input id="typeName" placeholder="type Name">
+    <input id="typeDescription" placeholder="description">
+    <a href="#" onclick="insertType()">submit</a>
+</div>
+<div id="insertThing">
+    <label>ThingInsert</label>
+    <input id="thingName" placeholder="thing Name">
+    <input id="thingType" placeholder="type">
+    <input id="thingDescription" placeholder="description">
+    <a href="#" onclick="insertThing()">submit</a>
+</div>
+<div>
+    <a href="#" onclick="findTypeList()">findTypeList</a>
+</div>
+<div id="addAction">
+    <label>ThingInsert</label>
+    <input id="actionName" placeholder="action Name">
+    <input id="actionPoint" placeholder="point">
+    <a href="#" onclick="addAction()">submit</a>
+</div>
+<div>
+    <p id="result"></p>
+</div>
+<script src="https://cdn.staticfile.org/jquery/1.12.0/jquery.min.js"></script>
+<script type="text/javascript">
+function login() {
+    var userName= $("#userNameLogin").val();
+    var userPassword = $("#userPasswordLogin").val();
+    var data = {"userName":userName,"password":userPassword};
+    console.log(data);
+    $.ajax({
+        type:"POST",
+        url:"/user/login",
+        data:data,
+        success: function (res) {
+            console.log("HERE");
+            $("#result").html(JSON.stringify(res));
+        },
+        error:function () {
+            $("#result").html("ERROR");
+        }
+    });
+};
+function insert() {
+    var userName = $("#userNameInsert").val();
+    var userPassword = $("#userPasswordInsert").val();
+    var data = {"userName":userName,"password":userPassword};
+    console.log(data);
+    $.ajax({
+        type:"POST",
+        url:"/user/insert",
+        data:data,
+        dataType:"json",
+        success: function (res) {
+            $("#result").html(JSON.stringify(res));
+        },
+        error:function () {
+            $("#result").html("ERROR");
+        }
+    });
+};
+function insertType() {
+    var typeName = $("#typeName").val();
+    var typeDescription = $("#typeDescription").val();
+    var data = {"typeName":typeName,"description":typeDescription};
+    console.log(data);
+    $.ajax({
+        type:"POST",
+        url:"/type/insert",
+        data:data,
+
+        success: function (res) {
+            $("#result").html(JSON.stringify(res));
+        },
+        error:function () {
+            $("#result").html("ERROR");
+        }
+    });
+};
+function findTypeList() {
+    $.ajax({
+        type:"GET",
+        url:"/type/typelist",
+
+
+        success: function (res) {
+            $("#result").html(JSON.stringify(res));
+        },
+        error:function () {
+            $("#result").html("ERROR");
+        }
+    });
+};
+function insertThing() {
+    var thingName = $("#thingName").val();
+    var thingDescription = $("#thingDescription").val();
+    var thingType = $("#thingType").val();
+    var data = {"name":thingName,"type":thingType,"description":thingDescription};
+    console.log(data);
+    $.ajax({
+        type:"POST",
+        url:"/thing/insert",
+        data:data,
+
+        success: function (res) {
+            $("#result").html(JSON.stringify(res));
+        },
+        error:function () {
+            $("#result").html("ERROR");
+        }
+    });
+};
+function addAction() {
+    var actionName = $("#actionName").val();
+    var actionPoint = $("#actionPoint").val();
+    var data = {"name":actionName,"point":actionPoint};
+    console.log(data);
+    $.ajax({
+        type:"POST",
+        url:"/action/add",
+        data:data,
+
+        success: function (res) {
+            $("#result").html(JSON.stringify(res));
+        },
+        error:function () {
+            $("#result").html("ERROR");
+        }
+    });
+}
+</script>
+</body>
+</html>

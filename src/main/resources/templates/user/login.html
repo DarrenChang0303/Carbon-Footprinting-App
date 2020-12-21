@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<!-- Author - Tonghui Li & Gavin Hodson-Walker  -->
+		<!-- A login page design for the CSC8005 Team 15 Group Project  -->
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<title>Login</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<!-- <link rel="stylesheet" th:href="@{/plugins/bootstrap4/css/bootstrap.min.css}"> -->
+		<script th:src="@{/plugins/jquery/jquery.min.js}"></script>
+		<script th:src="@{/plugins/bootstrap4/js/bootstrap.min.js}"></script>
+		<link th:href="@{/dist/css/bootstrap-4.4.1.css}" rel="stylesheet" type="text/css">
+		<link th:href="@{/dist/css/login.css}" rel="stylesheet" type="text/css">
+		<script th:src="@{/dist/js/jquery-3.4.1.min.js}"></script>
+		<script th:src="@{/dist/js/popper.min.js}"></script>
+		<script th:src="@{/dist/js/bootstrap-4.4.1.js}"></script>
+
+	</head>
+	<body>
+		<header class="header">
+			<div class="col-12">
+				<h5><strong>SAGE</strong> Carbon Footprinter</h5>
+			</div>
+		</header>
+			<div class="container-fluid bg">
+				<section class="row justify-content-center">
+					<section class="col-12 col-sm-6 col-md-3">
+						<div class="form-container">
+							<div class="form-group">
+								<form th:action="@{/user/login}" class="form-group" method="post">
+									<!-- <div th:if="${not #strings.isEmpty(session.errorMsg)}" class="form-group">
+										<div class="alert alert-danger" th:text="${session.errorMsg}"></div>
+									</div> -->
+									<div class="title">
+										Please login with your username and password or register for an account.
+									</div>
+									<div class="form-group">
+										<label for="username">Username</label>
+										<input type="text" id="userName" name="userName" class="form-control" placeholder="user name" required="true">
+										<small id="text" class="form-text text-muted">We'll never share your details with anyone else.</small>
+									</div>
+									<div class="form-group">
+										<label for="password">Password</label>
+										<input type="password" id="password" name="password" class="form-control" placeholder="password" required="true">
+									</div>
+									<div class="form-group"></div>
+									<div class="row">
+										<div class="col-12">
+											<button type="submit" class="btn btn-primary btn-block">Login</button>
+										</div>
+									</div>
+									<div class="form-group"></div>
+									<div class="row">
+										<div class="col-12">
+											<a onclick="startReg()" class="btn btn-primary btn-block" >Register</a>
+										</div>
+									</div>
+								</form>
+							</div>
+						</div>
+					</section>
+				</section>
+			</div>
+		<footer class="footer">
+			<div class="col-12">&nbsp;
+				<p>CSC8005 - Team 15</p>
+			</div>
+		</footer>
+
+	<div id="register" class="modal fade" tabindex="-1" role="dialog">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<div class="col-12">
+						<h5><strong>SAGE</strong> Carbon Footprinter</h5>
+					</div>
+					<div>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+				</div>
+				<form class="form-group" id="registerForm" method="post" onsubmit="return register();">
+				<div class="modal-body">
+					<div class="form-group">
+
+							<div class="title">
+								Please register with your username and password
+							</div>
+							<div></div>
+							<div class="form-group">
+								<label for="username">Choose your username</label>
+								<input type="text" id="regUserName" name="userName" class="form-control" placeholder="Username" required="true">
+								<small id="userNameText" class="form-text text-muted"></small>
+							</div>
+							<div class="form-group">
+								<label for="password">Select a password</label>
+								<input type="password" id="regPassword" name="password" class="form-control" placeholder="Password" required="true">
+							</div>
+
+					</div>
+				</div>
+				<div class="modal-footer">
+					<div class="form-group">
+						<div class="row">
+							<button type="submit" class="btn btn-primary btn-block">Register</button>
+							<button type="button" class="btn btn-secondary btn-block" data-dismiss="modal">Close</button>
+						</div>
+					</div>
+				</div>
+				</form>
+			</div>
+		</div>
+	</div>
+	</body>
+<script>
+	function startReg() {
+		$("#register").modal("show");
+	}
+
+	function register(){
+		let userName = $("#regUserName").val();
+		let password = $("#regPassword").val();
+
+		$.ajax({
+			url:"/user/insert",
+			type:"post",
+			data:{
+				userName:userName,
+				password:password
+			},
+			success:function (res) {
+				console.log(res);
+				if (res["message"]==="SUCCESS"){
+					alert("Register Success");
+					$("#register").modal("hide");
+				}
+			}
+		});
+		return false;
+	}
+</script>
+</html>

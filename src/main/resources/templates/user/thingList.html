@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>ThingList</title>
+    <link rel="stylesheet" th:href="@{/plugins/bootstrap4/css/bootstrap.min.css}">
+    <script th:src="@{/plugins/jquery/jquery.min.js}"></script>
+    <script th:src="@{/plugins/bootstrap4/js/bootstrap.min.js}"></script>
+    <link rel="stylesheet" th:href="@{/dist/main.css}">
+    <link th:href="@{/dist/css/modalBox.css}" rel="stylesheet" type="text/css">
+
+
+</head>
+<body>
+
+<div th:replace="user/nav::sidebar-fragment(path)"></div>
+<div class="background">
+
+
+<div  class="container" id="table">
+    <table th:background="tunnel_view.jpg" class="table">
+        <thead>
+        <tr class="tabletitle" >
+            <p class="textshadow">Type<img th:src="@{/dist/images/ogf_2016-06_pr-co2hero.jpg}"  width="40px" height="30px">
+            </p>
+
+        </tr>
+
+        </thead>
+        <tbody>
+        <div class = "typelist">
+        <tr th:each="type:${typeList}" >
+
+                <button  id="buttson"><span
+                        th:onclick="queryByType([[${type}]])" href="#" th:text="${type}"></span></button>
+
+        </tr>
+        </div>
+        <tr>
+            <td width="30%"><img th:src="@{/dist/images/litter.png}" width="90%" height="360px">
+                <br>
+                <strong>LitterPicking:</strong>If you find trash anywhere in the company, pick it up and record your accomplishments. <strong>0.5</strong> point at a time.
+            <br>
+
+            </td>
+        <td width="30%"><img th:src="@{/dist/images/recycling.jpg}" width="90%" height="360px">
+            <br>
+            <strong>Recycling:</strong><br>
+            Learn to sort through garbage and collect garbage with high recycling value and place it in a specific recycling location. You'll get a score of <strong>0.5</strong> to <strong>2</strong>.</td>
+        <td width="30%"><img th:src="@{/dist/images/resualble.png}" width="80%" height="360px">
+            <br>
+            <strong>ResuableItems:</strong><br>
+            Reusing items like plastic straws also reduces carbon emissions.</td>
+        </tr>
+
+        </tbody>
+    </table>
+    <div id="wrap">
+        <a href="#" class="btn-slide" th:href="@{/user/index}">
+            <span class="circle"><i class="fa fa-rocket"></i></span>
+            <span class="title">Back</span>
+
+            <span class="title-hover"  th:href="@{/user/index}">Click</span>
+        </a>
+        <a href="#" class="btn-slide2">
+            <span class="circle2"><i class="fa fa-download"></i></span>
+            <span class="title2">Download</span>
+            <span class="title-hover2">Confirm</span>
+        </a>
+    </div>
+</div>
+
+
+
+<div class="modal fade" id="addAction">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">Record a action</h3>
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+            </div>
+
+            <div class="modal-body">
+                <input type="hidden" id="id" >
+                <div class="form-group">
+                    <label>Name of Record</label>
+                    <input type="text" readonly="readonly" class="form-control" id="name">
+                </div>
+                <div class="form-group">
+                    <label>Points</label>
+                    <input type="text" readonly="readonly" class="form-control" id="point" >
+                </div>
+                <!--                    <div class="form-group">-->
+                <!--                        <label>Time</label>-->
+                <!--                        <input type="date" class="form-control" id="time">-->
+                <!--                    </div>-->
+                <div class="form-group">
+                    <label>Description</label>
+                    <input type="text" readonly="readonly" class="form-control" id="description">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="submit" onclick="addAction()" class="btn btn-primary">Submit</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+            </div>
+
+
+        </div>
+    </div>
+</div>
+
+
+<script th:inline="javascript">
+
+    function queryByType(type) {
+        let data = {
+            "type":type
+        };
+        let table = "<div class=\"align-content-center container\">\n" +
+            "    <table class=\"table\">\n" +
+            "        <thead class=\"nav-tabs\">\n" +
+            "        <tr>\n" +
+            "            <th class='textshadow'>Name</th>\n" +
+            "            <th class='textshadow'>Type</th>\n" +
+            "            <th class='textshadow'>Point</th>\n"+
+            " </tr>\n" +
+            "        </thead>\n" +
+            "        <tbody>";
+
+        console.log(data);
+        $.ajax({
+            type:"GET",
+            url: "/thing/querybytype",
+            data: data,
+            dataType: "json",
+            success: function (res) {
+                console.log(res);
+                if (res['resultCode']===200){
+                    let data = res["data"];
+                    for (let i=0;i<data.length;i++){
+                        table += "<tr >\n" +
+                            "            <td>\n" +
+                            "                <button class='button2' href=\"#\" data-toggle=\"modal\" data-target=\"#addAction\"\n" +
+                            "                   onclick=\"openModal("+data[i]["id"]+",'"+data[i]["name"]+"',"+data[i]["points"]+",'"+data[i]["description"]+"');\"\n" +
+                            "                   class=\"btn btn-primary\"> "+data[i]["name"]+"</button>\n" +
+                            "            </td>\n" +
+                            "            <td class='table2text' >"+data[i]["type"]+"</td>\n" +
+                            "            <td class='table2text'>"+data[i]["points"]+"</td>\n" +
+                            "        </tr>\n"
+                    }
+                    table += "</tbody></table>  <div id=\"wrap\">\n" +
+                        "        <a href=\"#\" class=\"btn-slide\">\n" +
+                        "            <span class=\"circle\"><i class=\"fa fa-rocket\"></i></span>\n" +
+                        "            <span class=\"title\">Back</span>\n" +
+                        "            <span class=\"title-hover\" onclick=\"history.go(0)\">Confirm</span>\n" +
+                        "        </a>\n" +
+                        "        <a href=\"#\" class=\"btn-slide2\">\n" +
+                        "            <span class=\"circle2\"><i class=\"fa fa-download\"></i></span>\n" +
+                        "            <span class=\"title2\">Download</span>\n" +
+                        "            <span class=\"title-hover2\">Click</span>\n" +
+                        "        </a>\n" +
+                        "    </div></div>";
+                    $("#table").html(table);
+                }
+            },
+            error:function () {
+                alert("Initial ERROR");
+            }
+        })
+    }
+
+    function openModal(thingId,thingName,points,description) {
+        $("#id").val(thingId);
+        $("#name").val(thingName);
+        // $("#time").val(new Date());
+        $("#point").val(points);
+        $("#description").val(description)
+    }
+
+    function addAction() {
+        let data = {
+            "thingId": $("#id").val(),
+            // "thingName": $("#name").val(),
+            // "point": $("#point").val()
+        };
+        console.log(data);
+        $.ajax({
+            type:"POST",
+            url:"/action/add",
+            data:data,
+            success: function (res) {
+                console.log(res);
+                if (res['resultCode']===200){
+                    alert("Record Success");
+                    $("#addAction").modal('hide');
+                }else {
+                    alert('failed:'+res['message'])
+                }
+            },
+            error:function () {
+                alert("ERROR");
+            }
+        })
+    }
+</script>
+</div>
+</body>
+</html>

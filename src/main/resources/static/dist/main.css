@@ -1,0 +1,20 @@
+.content{
+    overflow: hidden;
+    position: absolute;
+    top: 0px;
+    left: 120px;
+    right: 0px;
+    padding: 0px 10px;
+    overflow: auto;
+}
+.sideNav{
+    padding: 10px 0;
+    position: fixed;
+    left: 0px;
+    top: 0px;
+    bottom: 0px;
+    width: 120px;
+    background-color: #fff;
+    border-right: 1px solid #000;
+    z-index: 1020;
+}

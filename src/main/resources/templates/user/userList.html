@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" th:href="@{/plugins/bootstrap4/css/bootstrap.min.css}">
+    <script th:src="@{/plugins/jquery/jquery.min.js}"></script>
+    <script th:src="@{/plugins/bootstrap4/js/bootstrap.min.js}"></script>
+    <link rel="stylesheet" th:href="@{/dist/main.css}">
+    <link th:href="@{/dist/css/modalBox.css}" rel="stylesheet" type="text/css">
+
+    <title>Title</title>
+
+</head>
+<body class="userlistbackground">
+<div th:replace="user/nav::sidebar-fragment(path)"></div>
+<img th:src="@{/dist/images/tioga_lake.jpg}" class="img-fluid" alt="Tioga Lake">
+
+<div class="align-content-center container">
+    <table class="table">
+        <thead class="nav-tabs">
+        <tr class="table2text">
+            <th width="10%"></th>
+            <th class ="textshadow">UserName</th>
+            <th class="textshadow">Points</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="user,loopStatus:${userList}">
+            <div th:switch="${loopStatus.count}">
+            <td th:case="1" class="firstone" ><img th:src="@{/dist/images/first.png}"width="60%" ></td>
+                <td th:case="2" class="firstone"><img th:src="@{/dist/images/secon.png}"width="60%" ></td>
+                <td th:case="3" class="firstone"><img th:src="@{/dist/images/third.png}"width="60%" ></td>
+
+
+                <td class="table2text" th:text="${user.name}"></td>
+            <td class="table2text" th:text="${user.point}"></td>
+            </div>
+        </tr>
+
+
+
+        </tbody>
+    </table>
+</div>
+
+
+<div id="wrap">
+    <a href="#" class="btn-slide" th:href="@{/user/index}">
+        <span class="circle"><i class="fa fa-rocket"></i></span>
+        <span class="title">Back</span>
+
+        <span class="title-hover"  th:href="@{/user/index}">Click</span>
+    </a>
+    <a href="#" class="btn-slide2">
+        <span class="circle2"><i class="fa fa-download"></i></span>
+        <span class="title2">Download</span>
+        <span class="title-hover2">Confirm</span>
+    </a>
+</div>
+
+</body>
+</html>

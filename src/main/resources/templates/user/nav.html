@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<style>
+
+</style>
+
+<nav class="navbar navbar-expand-md bg-dark navbar-dark" th:fragment="sidebar-fragment(path)">
+    <a class="navbar-brand" href="#">Menu</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div id="collapsibleNavbar" class="collapse navbar-collapse ">
+        <ul class="navbar-nav">
+            <li role="presentation" class="nav-item"><a class="nav-link" th:href="@{/user/index}">Home</a> </li>
+            <li role="presentation" class="nav-item"><a class="nav-link" th:href="@{/user/list}">League Table</a></li>
+        </ul>
+    </div>
+</nav>
+</html>

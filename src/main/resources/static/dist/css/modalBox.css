@@ -1,0 +1,262 @@
+
+
+#buttson{
+    background: #b1dfbb;
+    color:white;
+    vertical-align:center;
+    line-height: 30px;
+    height: 80px;
+    width: 33.33%;
+    border-style:outset;
+    border-color: limegreen;
+    border:1px;
+
+    display: inline-block;
+    border-radius: 4px;
+    background-color: #71dd8a;
+    border: none;
+    color: #ffffff;
+    text-align: center;
+    font-size: 28px;
+    padding: 20px;
+    width: 30%;
+    transition: all 0.5s;
+    cursor: pointer;
+    margin: 5px;
+}
+#buttson span {
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    transition: 0.5s;
+}
+
+#buttson span:after {
+    content: '»';
+    position: absolute;
+    opacity: 0;
+    top: 0;
+    right: -20px;
+    transition: 0.5s;
+}
+
+#buttson:hover span {
+    padding-right: 25px;
+}
+
+#buttson:hover span:after {
+    opacity: 1;
+    right: 0;
+}
+
+
+
+.newspaper
+{
+    column-count:3;
+    -moz-column-count:3; /* Firefox */
+    -webkit-column-count:3; /* Safari and Chrome */
+
+}
+.tabletitle{
+    height: 30%;
+
+}
+.typelist tr{
+    vertical-align: center;
+    height:100px;
+
+}
+.textshadow{
+
+    text-shadow:2px 2px #9fcdff;
+        font-size: 40px;
+}
+.table2text{
+     font-family:"Comic Sans MS", cursive, sans-serif;
+     font-size: 25px;
+     font-weight: bold;
+    text-align: center;
+    vertical-align: center;
+}
+.tabletitle img{
+    float: right;
+}
+
+h2
+{
+    column-span:1;
+    -webkit-column-span:1; /* Safari and Chrome */
+}
+
+
+body{
+    background-image: url("templates/user/tunnel_view.jpg");
+}
+
+
+canvas{
+    border: 1px solid red;
+}
+
+
+.button2 {
+    position: relative;
+    background-color: #4CAF50;
+    border: none;
+    font-size: 28px;
+    color: #FFFFFF;
+    padding: 20px;
+    width: 200px;
+    text-align: center;
+    -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+    text-decoration: none;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.button2:after {
+    content: "";
+    background: #90EE90;
+    display: block;
+    position: absolute;
+    padding-top: 300%;
+    padding-left: 350%;
+    margin-left: -20px!important;
+    margin-top: -120%;
+    opacity: 0;
+    transition: all 0.8s
+}
+
+.button2:active:after {
+    padding: 0;
+    margin: 0;
+    opacity: 1;
+    transition: 0s
+}
+.
+
+
+
+/*--按钮1--*/
+#wrap {
+    margin: 20px auto;
+    text-align:center;
+}
+
+#wrap br {
+    display: none;
+}
+
+.btn-slide, .btn-slide2 {
+    position: relative;
+    display: inline-block;
+    height: 50px;
+    width: 200px;
+    line-height: 50px;
+    padding: 0;
+    border-radius: 50px;
+    background: #fdfdfd;
+    border: 2px solid #0099cc;
+    margin: 10px;
+    transition: .5s;
+}
+
+.btn-slide2 {
+    border: 2px solid #efa666;
+}
+
+.btn-slide:hover {
+    background-color: #0099cc;
+}
+
+.btn-slide2:hover {
+    background-color: #efa666;
+}
+
+.btn-slide:hover span.circle, .btn-slide2:hover span.circle2 {
+    right: 100%;
+    margin-right: -45px;
+    background-color: #fdfdfd;
+    color: #0099cc;
+}
+
+.btn-slide2:hover span.circle2 {
+    color: #efa666;
+}
+
+.btn-slide:hover span.title, .btn-slide2:hover span.title2 {
+    right: 40px;
+    opacity: 0;
+}
+
+.btn-slide:hover span.title-hover, .btn-slide2:hover span.title-hover2 {
+    opacity: 1;
+    right: 40px;
+}
+
+.btn-slide span.circle, .btn-slide2 span.circle2 {
+    display: block;
+    background-color: #0099cc;
+    color: #fff;
+    position: absolute;
+    float: right;
+    margin: 5px;
+    line-height: 42px;
+    height: 40px;
+    width: 40px;
+    top: 0;
+    right: 0;
+    transition: .5s;
+    border-radius: 50%;
+}
+
+.btn-slide2 span.circle2 {
+    background-color: #efa666;
+}
+
+.btn-slide span.title,
+.btn-slide span.title-hover, .btn-slide2 span.title2,
+.btn-slide2 span.title-hover2 {
+    position: absolute;
+    right: 90px;
+    text-align: center;
+    margin: 0 auto;
+    font-size: 16px;
+    font-weight: bold;
+    color: #30abd5;
+    transition: .5s;
+}
+
+.btn-slide2 span.title2,
+.btn-slide2 span.title-hover2 {
+    color: #efa666;
+    right: 80px;
+}
+
+.btn-slide span.title-hover, .btn-slide2 span.title-hover2 {
+    right: 80px;
+    opacity: 0;
+}
+
+.btn-slide span.title-hover, .btn-slide2 span.title-hover2 {
+    color: #fff;
+}
+
+.firstone{
+    color: #0f6674;
+    font-family:"Comic Sans MS", cursive, sans-serif;
+    font-size: 25px;
+    font-weight: bold;
+
+}
+
+
+#background{
+    background:url(/dist/images/sagephoto.jpg) repeat;
+    width: 100%;
+    background-size: 100% 100%;
+    border: 1px solid red;
+
+}

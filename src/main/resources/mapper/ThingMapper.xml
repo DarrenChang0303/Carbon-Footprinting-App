@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.group.demo.dao.ThingDao">
+    <resultMap id="ThingResultMap" type="com.group.demo.entity.Thing">
+        <id column="id_thing" property="id"/>
+        <result column="thing_name" property="name"/>
+        <result column="type" property="type"/>
+        <result column="description" property="description"/>
+        <result column="points" property="points"/>
+    </resultMap>
+    <select id="queryAllThing" resultMap="ThingResultMap">
+        select * from tb_thing
+    </select>
+    <select id="queryThingById" resultMap="ThingResultMap">
+        select * from tb_thing where id_thing = #{id}
+    </select>
+    <select id="queryThingsByType" resultMap="ThingResultMap" parameterType="java.lang.String">
+        select * from tb_thing where type = #{type}
+    </select>
+    <insert id="insertThing" parameterType="com.group.demo.entity.Thing">
+        insert into tb_thing (thing_name, type, description, points )
+        values (#{name}, #{type}, #{description}, #{points})
+    </insert>
+    <select id="queryTypes" resultType="java.lang.String">
+        select distinct type from tb_thing ;
+    </select>
+
+</mapper>

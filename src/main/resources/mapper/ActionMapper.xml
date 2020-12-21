@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.group.demo.dao.ActionDao">
+    <resultMap id="ActionResultMap" type="com.group.demo.entity.Action">
+        <id column="id_action" property="id"/>
+        <result column="action_name" property="name"/>
+        <result column="action_point" property="point"/>
+        <result column="create_time" property="createTime"/>
+        <association property="thing" resultMap="com.group.demo.dao.ThingDao.ThingResultMap">
+        </association>
+        <association property="actionUser" resultMap="com.group.demo.dao.UserDao.UserResultMap">
+        </association>
+    </resultMap>
+    <select id="queryAllAction" resultMap="ActionResultMap">
+        select * from tb_action
+    </select>
+    <select id="queryActionByUser" resultMap="ActionResultMap" parameterType="com.group.demo.entity.User">
+        select * from tb_action where id_user = #{id}
+    </select>
+    <insert id="addAction" parameterType="com.group.demo.entity.Action">
+        insert into tb_action (action_name, action_point, create_time, id_thing, id_user)
+        values (#{name}, #{point}, now(), #{thing.id}, #{actionUser.id})
+    </insert>
+</mapper>

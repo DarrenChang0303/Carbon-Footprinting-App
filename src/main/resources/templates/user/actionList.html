@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>List</title>
+    <link rel="stylesheet" th:href="@{/plugins/bootstrap4/css/bootstrap.min.css}">
+    <script th:src="@{/plugins/jquery/jquery.min.js}"></script>
+    <script th:src="@{/plugins/bootstrap4/js/bootstrap.min.js}"></script>
+    <script src="https://cdn.staticfile.org/echarts/4.3.0/echarts.min.js"></script>
+    <link th:href="@{/dist/css/modalBox.css}" rel="stylesheet" type="text/css">
+
+</head>
+<body>
+<div th:replace="user/nav::sidebar-fragment(path)"></div>
+<div class="align-content-center container"  >
+    <table  class="table">
+        <thead class="nav-tabs">
+            <tr class="table2text">
+                <th class="textshadow">Name</th>
+                <th class="textshadow">Point</th>
+                <th class="textshadow">CreateTime</th>
+                <th class="textshadow">User</th>
+                <th class="textshadow">Thing</th>
+            </tr>
+        </thead>
+        <tbody >
+            <tr th:each="action:${actionList}">
+                <td class="table2text" th:text="${action.name}"></td>
+                <td class="table2text" th:text="${action.point}"></td>
+                <td class="table2text" th:text="${action.createTime}"></td>
+                <td class="table2text" th:text="${action.actionUser.name}"></td>
+                <td class="table2text" th:text="${action.thing.name}"></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div id="main" style="width: 600px;height:400px;"></div>
+
+    <div id="wrap">
+        <a href="#" class="btn-slide" th:href="@{/user/index}">
+            <span class="circle"><i class="fa fa-rocket"></i></span>
+            <span class="title">Back</span>
+
+            <span class="title-hover"  th:href="@{/user/index}">Click</span>
+        </a>
+        <a href="#" class="btn-slide2">
+            <span class="circle2"><i class="fa fa-download"></i></span>
+            <span class="title2">Download</span>
+            <span class="title-hover2">Confirm</span>
+        </a>
+    </div>
+</div>
+<script th:inline="javascript" >
+
+    $(function () {
+        let data = [[${actionList}]];
+        console.log(data);
+        let _data = [];
+        let timeSet = [];
+        for (let i=0;i<data.length;i++){
+
+            if (!timeSet.includes(data[i]["createTime"].substring(0,10))){
+                timeSet.push(data[i]["createTime"].substring(0,10));
+
+                _data.push({
+                    "createTime":data[i]["createTime"].substring(0,10),
+                    "point":data[i]["point"]
+                });
+            }else {
+                _data[timeSet.indexOf(data[i]["createTime"].substring(0,10))]["point"] += data[i]["point"];
+            }
+        }
+        console.log(_data);
+
+        let xData = [];
+        let yData = [];
+        for (let i=0;i<_data.length;i++){
+            xData.push(_data[i]["createTime"]);
+            yData.push(_data[i]["point"]);
+        }
+
+        // 基于准备好的dom，初始化echarts实例
+        let myChart = echarts.init(document.getElementById('main'));
+
+
+        //指定图表的配置项和数据
+        let option = {
+            title: {
+                text: 'The line chart'
+            },
+            tooltip: {},
+            legend: {
+                data:['Points']
+            },
+            xAxis: {
+                data: xData
+            },
+            yAxis: {},
+            series: [{
+                name: 'Point',
+                type: 'bar',
+                data: yData
+            }]
+        };
+
+        // 使用刚指定的配置项和数据显示图表。
+        myChart.setOption(option);
+    })
+
+</script>
+</body>
+
+</html>

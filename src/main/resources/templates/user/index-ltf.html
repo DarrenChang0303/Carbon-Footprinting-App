@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" th:href="@{/plugins/bootstrap4/css/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{/dist/main.css}">
+    <script th:src="@{/plugins/jquery/jquery.min.js}"></script>
+    <script th:src="@{/plugins/bootstrap4/js/bootstrap.min.js}"></script>
+    <title>UserInfo</title>
+</head>
+<body>
+<div th:replace="user/nav::sidebar-fragment(path)"></div>
+<div class="container" >
+    <br>
+    <div class="card ">
+        <div class="card-body">
+            <p class="card-title" th:text="${user.name}">userName</p>
+            <p class="card-text" th:text="'POINTS:'+${user.point}">userPoint</p>
+<!--            <a class="btn btn-primary">update profile</a>-->
+        </div>
+    </div>
+    <br>
+    <div class="card ">
+        <div class="card-body">
+            <P class="card-title">Record</P>
+            <a th:href="@{/thing/queryTypes}" class="btn btn-primary">Add a action</a>
+            <a th:href="@{/action/query}" class="btn btn-primary">History Record</a>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
